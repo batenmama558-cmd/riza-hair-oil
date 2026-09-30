@@ -48,12 +48,12 @@ footer{text-align:center;padding:30px;color:#766c67}
 </div></section>
 <section id="order"><div class="order">
 <h2>Place Your Order</h2><p>RIZA Organic Hair Oil — <b>৳599</b></p>
-<form id="form"><input id="name" required placeholder="Your name"><input id="phone" required placeholder="Phone number" inputmode="tel"><textarea id="address" required placeholder="Delivery address / location"></textarea><button type="submit">Place Order on WhatsApp</button></form>
+<form id="form"><input id="name" required placeholder="Your name"><input id="phone" required placeholder="Phone number" inputmode="tel"><select id="area" required style="width:100%;padding:15px;margin:6px 0;border:1px solid #554842;background:#2b211d;color:white;border-radius:12px;font-size:16px"><option value="" disabled selected>Delivery area</option><option value="Dhaka" data-charge="150">Dhaka — Delivery ৳150</option><option value="Outside Dhaka" data-charge="0">Outside Dhaka — Delivery ৳0</option></select><textarea id="address" required placeholder="Delivery address / location"></textarea><button type="submit">Place Order on WhatsApp</button></form>
 </div></section>
 </main>
 <div class="modal" id="successModal"><div class="modal-box">
 <div class="check">✓</div><h2>Order Confirmed!</h2><p>Your order has been prepared successfully.</p>
-<div class="order-number" id="popupOrderNo"></div><p id="popupCustomer"></p><p><b>Total: ৳599</b></p>
+<div class="order-number" id="popupOrderNo"></div><p id="popupCustomer"></p><p id="popupTotal"><b>Total: ৳599</b></p>
 <div class="modal-actions"><a id="popupWhatsApp" class="wa-btn" href="#">Open WhatsApp Again →</a><button class="close-btn" type="button" onclick="closeSuccess()">Done</button></div>
 </div></div>
 <footer>© RIZA Organic Hair Oil • Bangladesh</footer>
@@ -62,10 +62,10 @@ document.getElementById('form').onsubmit=function(e){
 e.preventDefault();
 var d=new Date(),pad=function(n){return String(n).padStart(2,'0')};
 var no='RIZA-'+String(d.getFullYear()).slice(2)+pad(d.getMonth()+1)+pad(d.getDate())+'-'+Math.floor(1000+Math.random()*9000);
-var n=document.getElementById('name').value.trim(),p=document.getElementById('phone').value.trim(),a=document.getElementById('address').value.trim();
-var msg='NEW RIZA ORGANIC HAIR OIL ORDER\nOrder No: '+no+'\nName: '+n+'\nPhone: '+p+'\nDelivery Address: '+a+'\nProduct: RIZA Organic Hair Oil\nTotal: ৳599';
+var n=document.getElementById('name').value.trim(),p=document.getElementById('phone').value.trim(),a=document.getElementById('address').value.trim(),area=document.getElementById('area').value,charge=area==='Dhaka'?150:0,total=599+charge;
+var msg='NEW RIZA ORGANIC HAIR OIL ORDER\nOrder No: '+no+'\nName: '+n+'\nPhone: '+p+'\nDelivery Area: '+area+'\nDelivery Charge: ৳'+charge+'\nDelivery Address: '+a+'\nProduct: RIZA Organic Hair Oil\nProduct Price: ৳599\nTotal: ৳'+total;
 var url='https://wa.me/8801834064878?text='+encodeURIComponent(msg);
-document.getElementById('popupOrderNo').textContent=no;document.getElementById('popupCustomer').textContent='Thank you, '+n+'!';
+document.getElementById('popupOrderNo').textContent=no;document.getElementById('popupCustomer').textContent='Thank you, '+n+'!';document.getElementById('popupTotal').innerHTML='<b>Total: ৳'+total+'</b>';
 document.getElementById('popupWhatsApp').href=url;
 document.getElementById('successModal').classList.add('show');
 try{window.open(url,'_blank');}catch(err){window.location.href=url;}
