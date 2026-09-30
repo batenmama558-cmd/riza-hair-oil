@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RIZA Organic Hair Oil</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#fffaf7;color:#17130f}
+nav{position:sticky;top:0;z-index:5;background:#fffaf7dd;backdrop-filter:blur(12px);padding:16px 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eadfd8}
+.logo{font-weight:800;letter-spacing:2px}.navbtn,.btn{background:#17130f;color:white;border:0;border-radius:14px;padding:13px 20px;font-weight:700;text-decoration:none;cursor:pointer}
+.hero{max-width:1100px;margin:auto;padding:70px 6% 45px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.badge{display:inline-block;background:#f1e4dc;padding:8px 13px;border-radius:99px;font-size:13px;font-weight:700}
+h1{font-size:clamp(42px,7vw,76px);line-height:.95;margin:18px 0}p{line-height:1.6;color:#6d625b}
+.price{font-size:30px;font-weight:800;margin:22px 0}.heroart{min-height:420px;display:grid;place-items:center;background:linear-gradient(145deg,#ead8ca,#fff7f0);border-radius:35px}
+.bottle{width:180px;height:280px;background:linear-gradient(90deg,#191715,#514b43,#161412);border-radius:25px 25px 35px 35px;position:relative;box-shadow:0 25px 45px #6b4d3a55}
+.cap{position:absolute;width:105px;height:48px;background:#151311;left:37px;top:-38px;border-radius:12px 12px 5px 5px}.label{position:absolute;left:18px;right:18px;top:90px;background:#efe3d6;border-radius:12px;padding:25px 8px;text-align:center;font-weight:800;letter-spacing:1px}.label small{display:block;margin-top:9px;font-weight:600;letter-spacing:0}
+section{max-width:1000px;margin:auto;padding:55px 6%}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:white;padding:25px;border-radius:22px;border:1px solid #eee2da}.card b{font-size:18px}
+.order{background:#17130f;color:white;border-radius:30px;padding:35px}.order p{color:#cfc5bd}form{display:grid;gap:14px}input,textarea{width:100%;padding:15px;border:1px solid #514a44;border-radius:12px;background:#fff;color:#17130f;font-size:16px}textarea{min-height:100px;resize:vertical}.total{font-size:22px;font-weight:800}.confirm{display:none;text-align:center;background:white;color:#17130f;border-radius:22px;padding:28px}.confirm.show{display:block}.hidden{display:none!important}
+footer{text-align:center;padding:40px;color:#81766f;font-size:13px}
+@media(max-width:750px){.hero{grid-template-columns:1fr;padding-top:45px}.heroart{min-height:350px}.grid{grid-template-columns:1fr}nav{padding:13px 5%}}
+</style>
+</head>
+<body>
+<nav><div class="logo">RIZA ORGANIC</div><a class="navbtn" href="#order">Order Now</a></nav>
+<main>
+<section class="hero">
+<div><span class="badge">ORGANIC HAIR CARE</span><h1>Healthy hair starts with RIZA.</h1><p>A premium hair oil for a simple, nourishing hair-care routine.</p><div class="price">৳599</div><a class="btn" href="#order">Buy Now →</a></div>
+<div class="heroart"><div class="bottle"><div class="cap"></div><div class="label">RIZA<small>ORGANIC HAIR OIL</small></div></div></div>
+</section>
+<section><div class="grid"><div class="card">🌿<br><br><b>Organic Care</b><p>Made for everyday hair-care routines.</p></div><div class="card">✨<br><br><b>Premium Feel</b><p>A clean, elegant hair-oil experience.</p></div><div class="card">📦<br><br><b>Easy Ordering</b><p>Order directly through WhatsApp.</p></div></div></section>
+<section id="order"><div class="order"><h2>Place Your Order</h2><p>Fill in your details and continue to WhatsApp.</p>
+<div id="formbox"><form id="orderForm">
+<input id="name" placeholder="Your name" required><input id="phone" type="tel" placeholder="Phone number" required><textarea id="location" placeholder="Delivery address / location" required></textarea>
+<div class="total">Total: ৳599</div><button class="btn" type="submit">Place Order on WhatsApp</button></form></div>
+<div id="confirm" class="confirm"><h2>✅ Order Confirmed</h2><p id="details"></p><button class="btn" id="again">Place Another Order</button></div>
+</div></section>
+</main>
+<footer>© RIZA Organic Hair Oil · WhatsApp: 01834064878</footer>
+<script>
+const price=599, wa="8801834064878";
+function orderNo(){let d=new Date(),p=n=>String(n).padStart(2,"0");return "RIZA-"+String(d.getFullYear()).slice(-2)+p(d.getMonth()+1)+p(d.getDate())+"-"+Math.floor(1000+Math.random()*9000)}
+document.getElementById("orderForm").onsubmit=e=>{e.preventDefault();let n=document.getElementById("name").value.trim(),ph=document.getElementById("phone").value.trim(),loc=document.getElementById("location").value.trim(),no=orderNo();
+let msg="NEW RIZA ORGANIC HAIR OIL ORDER%0A%0AOrder No: "+encodeURIComponent(no)+"%0AName: "+encodeURIComponent(n)+"%0APhone: "+encodeURIComponent(ph)+"%0ADelivery Location: "+encodeURIComponent(loc)+"%0AProduct: RIZA Organic Hair Oil%0ATotal: ৳599";
+window.open("https://wa.me/"+wa+"?text="+msg,"_blank");
+document.getElementById("formbox").classList.add("hidden");document.getElementById("confirm").classList.add("show");document.getElementById("details").innerHTML="<b>"+n+"</b><br>Order No: "+no+"<br>Total: ৳599<br><br>WhatsApp order message prepared successfully.";
+};
+document.getElementById("again").onclick=()=>{document.getElementById("confirm").classList.remove("show");document.getElementById("formbox").classList.remove("hidden");document.getElementById("orderForm").reset()};
+</script>
+</body></html>
