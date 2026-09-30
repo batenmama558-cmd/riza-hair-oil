@@ -66,7 +66,9 @@ var n=document.getElementById('name').value.trim(),p=document.getElementById('ph
 var msg='NEW RIZA ORGANIC HAIR OIL ORDER\nOrder No: '+no+'\nName: '+n+'\nPhone: '+p+'\nDelivery Address: '+a+'\nProduct: RIZA Organic Hair Oil\nTotal: ৳599';
 var url='https://wa.me/8801834064878?text='+encodeURIComponent(msg);
 document.getElementById('popupOrderNo').textContent=no;document.getElementById('popupCustomer').textContent='Thank you, '+n+'!';
-document.getElementById('popupWhatsApp').href=url;document.getElementById('successModal').classList.add('show');
+document.getElementById('popupWhatsApp').href=url;
+document.getElementById('successModal').classList.add('show');
+try{window.open(url,'_blank');}catch(err){window.location.href=url;}
 };
 function closeSuccess(){document.getElementById('successModal').classList.remove('show')}
 document.getElementById('successModal').onclick=function(e){if(e.target===this)closeSuccess()};
