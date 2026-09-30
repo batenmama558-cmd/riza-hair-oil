@@ -10,7 +10,7 @@ nav{position:sticky;top:0;z-index:5;background:#fffaf7dd;backdrop-filter:blur(12
 .hero{max-width:1100px;margin:auto;padding:70px 6% 45px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
 .badge{display:inline-block;background:#f1e4dc;padding:8px 13px;border-radius:99px;font-size:13px;font-weight:700}
 h1{font-size:clamp(42px,7vw,76px);line-height:.95;margin:18px 0}p{line-height:1.6;color:#6d625b}
-.price{font-size:30px;font-weight:800;margin:22px 0}.heroart{min-height:420px;display:grid;place-items:center;background:linear-gradient(145deg,#ead8ca,#fff7f0);border-radius:35px;overflow:hidden}.product-photo{width:100%;height:100%;min-height:420px;object-fit:cover;display:block}
+.price{font-size:30px;font-weight:800;margin:22px 0}.heroart{min-height:420px;display:grid;place-items:center;background:linear-gradient(145deg,#ead8ca,#fff7f0);border-radius:35px;overflow:hidden;padding:14px}.product-photo{width:100%;height:100%;min-height:390px;max-height:560px;object-fit:contain;display:block;border-radius:24px}
 .bottle{width:180px;height:280px;background:linear-gradient(90deg,#191715,#514b43,#161412);border-radius:25px 25px 35px 35px;position:relative;box-shadow:0 25px 45px #6b4d3a55}
 .cap{position:absolute;width:105px;height:48px;background:#151311;left:37px;top:-38px;border-radius:12px 12px 5px 5px}.label{position:absolute;left:18px;right:18px;top:90px;background:#efe3d6;border-radius:12px;padding:25px 8px;text-align:center;font-weight:800;letter-spacing:1px}.label small{display:block;margin-top:9px;font-weight:600;letter-spacing:0}
 section{max-width:1000px;margin:auto;padding:55px 6%}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:white;padding:25px;border-radius:22px;border:1px solid #eee2da}.card b{font-size:18px}
@@ -31,18 +31,18 @@ footer{text-align:center;padding:40px;color:#81766f;font-size:13px}
 <div id="formbox"><form id="orderForm">
 <input id="name" placeholder="Your name" required><input id="phone" type="tel" placeholder="Phone number" required><textarea id="location" placeholder="Delivery address / location" required></textarea>
 <div class="total">Total: ৳599</div><button class="btn" type="submit">Place Order on WhatsApp</button></form></div>
-<div id="confirm" class="confirm"><h2>✅ Order Confirmed</h2><p id="details"></p><button class="btn" id="again">Place Another Order</button></div>
+<div id="confirm" class="confirm"><h2>✅ Order Confirmed</h2><p id="details"></p><button class="btn" id="openwa">Open WhatsApp Again</button> <button class="btn" id="again">Place Another Order</button></div>
 </div></section>
 </main>
 <footer>© RIZA Organic Hair Oil · WhatsApp: 01834064878</footer>
 <script>
-const price=599, wa="8801834064878";
+const price=599, wa="8801834064878"; let lastWhatsAppUrl="";
 function orderNo(){let d=new Date(),p=n=>String(n).padStart(2,"0");return "RIZA-"+String(d.getFullYear()).slice(-2)+p(d.getMonth()+1)+p(d.getDate())+"-"+Math.floor(1000+Math.random()*9000)}
 document.getElementById("orderForm").onsubmit=e=>{e.preventDefault();let n=document.getElementById("name").value.trim(),ph=document.getElementById("phone").value.trim(),loc=document.getElementById("location").value.trim(),no=orderNo();
 let msg="NEW RIZA ORGANIC HAIR OIL ORDER%0A%0AOrder No: "+encodeURIComponent(no)+"%0AName: "+encodeURIComponent(n)+"%0APhone: "+encodeURIComponent(ph)+"%0ADelivery Location: "+encodeURIComponent(loc)+"%0AProduct: RIZA Organic Hair Oil%0ATotal: ৳599";
-window.open("https://wa.me/"+wa+"?text="+msg,"_blank");
+lastWhatsAppUrl="https://wa.me/"+wa+"?text="+msg; window.open(lastWhatsAppUrl,"_blank");
 document.getElementById("formbox").classList.add("hidden");document.getElementById("confirm").classList.add("show");document.getElementById("details").innerHTML="<b>"+n+"</b><br>Order No: "+no+"<br>Total: ৳599<br><br>WhatsApp order message prepared successfully.";
 };
-document.getElementById("again").onclick=()=>{document.getElementById("confirm").classList.remove("show");document.getElementById("formbox").classList.remove("hidden");document.getElementById("orderForm").reset()};
+document.getElementById("openwa").onclick=()=>{if(lastWhatsAppUrl) window.open(lastWhatsAppUrl,"_blank")}; document.getElementById("again").onclick=()=>{document.getElementById("confirm").classList.remove("show");document.getElementById("formbox").classList.remove("hidden");document.getElementById("orderForm").reset()};
 </script>
 </body></html>
